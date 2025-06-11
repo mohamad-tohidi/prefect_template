@@ -1,0 +1,2 @@
+prefect==3.4.5
+elasticsearch==8.*
