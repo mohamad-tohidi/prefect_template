@@ -1,3 +1,4 @@
+from pathlib import Path
 from prefect import flow, task, get_run_logger
 from prefect_dask import DaskTaskRunner          
 from elasticsearch import Elasticsearch, helpers
@@ -91,3 +92,13 @@ def reindex(max_slices: int = 8,
     n = sum(totals)
     get_run_logger().info(f"ALL DONE – copied {n} docs 🚀")
 
+if __name__ == "__main__":
+    reindex.from_source(                             # ⬅ where code lives
+        source=str(Path(__file__).parent),
+        entrypoint="reindex.py:reindex",
+    ).deploy(                                        # ⬅ create deployment
+        name="etl-demo",
+        work_pool_name="etl",                        # pool you already made
+        parameters={"max_slices": 8},
+        tags=["elasticsearch-etl"],
+    )
