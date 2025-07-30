@@ -1,7 +1,3 @@
-You’ve got it almost 100 % right.
-Below is a **one-page checklist** (copy/paste somewhere safe) that fills the tiny gaps and shows the exact commands for every hop.
-
----
 
 ## 🚦 1 · Start (or restart) the Prefect Server
 
